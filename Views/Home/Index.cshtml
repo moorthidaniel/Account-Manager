@@ -1,0 +1,63 @@
+@using System.Web
+@model IEnumerable<OnlineAccount>
+
+<div class="row">
+    <div class="col-md-4 offset-md-2 p-2 m-2">
+      <form asp-action="Index" asp-controller="Home" method="GET">
+            <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search" name="searchString" id="searchString">
+      </form>  
+    </div>
+    <div class="col-md-2 p-2 m-2">
+        <a  class="btn btn-primary"  asp-action="Index" asp-controller="Home">
+           Show All
+        </a>
+          <a  class="btn btn-primary"  asp-action="NewAccount" asp-controller="Home">
+            <i class="fas fa-plus"></i>
+        </a>
+     </div>
+</div>
+
+<div class="row">
+    <div class="col-md-11 p-2 m-2">
+         <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>User Id</th>
+                        <th>Password</th>
+                        <th>Notes</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.UserId </td>
+                        <td>
+                            <a class="p-2" href="#" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.Password">
+                                View
+                            </a>
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Notes))
+                            {
+                                <a class="p-2" href="#" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.Notes">View</a>
+                            }
+                        <td>
+                            <a class="p-2" asp-controller="Home" asp-action="EditAccount" asp-route-id="@item.Id" >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="p-2" asp-controller="Home" asp-action="DeleteAccount" asp-route-id="@item.Id" onclick="return confirm('Are you sure the account should be removed?')" >
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+           </table>
+    </div>
+    
+   
+</div>
+

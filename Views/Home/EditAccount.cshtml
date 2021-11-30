@@ -1,0 +1,23 @@
+@model OnlineAccount
+<h2 class="p-2 m-2">Modify Account</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="EditAccount" method="post" class="p-2 m-2">
+     <div class="form-group">
+        <label>Account Name</label><input asp-for="Id" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label>Account Name</label><input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>User Name</label><input asp-for="UserId" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Password</label><input asp-for="Password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Notes</label><textarea asp-for="Notes" class="form-control" rows="5"  ></textarea>
+    </div>
+    <div class="text-center">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+ </form>
